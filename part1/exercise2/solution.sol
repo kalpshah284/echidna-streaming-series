@@ -11,4 +11,6 @@ contract TestToken is Token {
     function echidna_test_pausable() public view returns (bool) {
         return is_paused == true;
     }
+
+    
 }

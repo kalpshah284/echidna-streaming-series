@@ -1,4 +1,4 @@
-pragma solidity 0.8.1;
+pragma solidity ^0.8.0;
 
 import "./ABDKMath64x64.sol";
 
@@ -251,6 +251,11 @@ contract EchidnaTemplate {
     // Test for associative property
     // (x + y) + z == x + (y + z)
     function add_test_associative(int128 x, int128 y, int128 z) public {
+        int128 X_Y = add(x, y);
+        int128 new_left = add(X_Y, z);
+        int128 Y_Z = add(y, z);
+        int128 new_right = add(Y_Z, x);
+        assert(new_left == new_right);
     }
 
 
@@ -266,6 +271,11 @@ contract EchidnaTemplate {
 
     // Test (x + y) - y == x
     function add_sub_inverse_operations(int128 x, int128 y) public {
+    //    //emit debug(x, y);
+    //     int128 x_y = add(x, y);
+    //     int128 new_x = sub(x_y , y);
+    //     //emit debug(x_y, new_x);
+    //     assert(new_x == x);
     }
 
 
@@ -286,5 +296,9 @@ contract EchidnaTemplate {
     // Test that division is not commutative
     // (x / y) != (y / x)
     function div_test_not_commutative(int128 x, int128 y) public {
+        require(abs(x) != abs(y));
+        int128 newx_y = div(x, y);
+        int128 newy_x = div(y, x);
+        assert(newx_y != newy_x);
     }
 }

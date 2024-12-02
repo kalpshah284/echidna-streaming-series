@@ -1,3 +1,5 @@
+
+pragma solidity ^0.8.0;
 import "token.sol";
 
 /// @dev to run: $ echidna-test solution.sol
